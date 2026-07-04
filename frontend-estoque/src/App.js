@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import Produtos from './pages/Produtos'; // Você criará esses arquivos
+import Produtos from './pages/Produtos';
 import Fornecedores from './pages/Fornecedores';
 import Associacao from './pages/Associacao';
 
