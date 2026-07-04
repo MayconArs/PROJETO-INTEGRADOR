@@ -2,18 +2,24 @@ const express = require('express');
 const router = express.Router();
 const produtoController = require('./produtoController');
 const fornecedorController = require('./fornecedorController');
-const associacaoController = require('./associacaoController'); // Adicione esta linha
+const associacaoController = require('./associacaoController');
 
 // Rotas de Produto
 router.post('/produtos', produtoController.cadastrarProduto);
+router.get('/produtos', produtoController.listarProdutos);
+router.get('/produtos/:id', produtoController.obterProdutoPorId);
+router.put('/produtos/:id', produtoController.atualizarProduto);
 router.delete('/produtos/:id', produtoController.excluirProduto);
-router.get('/produtos', produtoController.listarProdutos); // Recomendado para o Frontend
 
 // Rotas de Fornecedor
 router.post('/fornecedores', fornecedorController.cadastrarFornecedor);
-router.get('/fornecedores', fornecedorController.listarFornecedores); // Recomendado para o Frontend
+router.get('/fornecedores', fornecedorController.listarFornecedores);
+router.put('/fornecedores/:id', fornecedorController.atualizarFornecedor);
+router.delete('/fornecedores/:id', fornecedorController.excluirFornecedor);
 
-// Rota de Associação (Conforme requisito da Fase 1/Etapa 3)
+// Rotas de Associação
 router.post('/associar', associacaoController.associar);
+router.delete('/associar', associacaoController.desassociar);
+router.get('/produtos/:id/fornecedores', associacaoController.listarFornecedoresPorProduto);
 
 module.exports = router;

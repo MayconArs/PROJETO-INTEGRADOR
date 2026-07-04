@@ -17,10 +17,16 @@ db.serialize(() => {
         nome TEXT,
         cnpj TEXT UNIQUE,
         endereco TEXT,
-        contato TEXT
+        contato TEXT,
+        telefone TEXT,
+        email TEXT
     )`);
 
-    // 2. Criar a tabela de associação por último (porque ela depende das duas acima)
+    // Adicionar colunas telefone e email caso a tabela ja exista sem elas
+    db.run(`ALTER TABLE fornecedores ADD COLUMN telefone TEXT`, () => {});
+    db.run(`ALTER TABLE fornecedores ADD COLUMN email TEXT`, () => {});
+
+    // 2. Criar a tabela de associacao por ultimo (porque ela depende das duas acima)
     db.run(`CREATE TABLE IF NOT EXISTS produto_fornecedor (
         produto_id INTEGER,
         fornecedor_id INTEGER,
